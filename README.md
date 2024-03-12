@@ -82,5 +82,12 @@ we've got our answer! We can even see what are the intermediate steps he decided
 this means that he inserted this information in his knowledge as well, let's check by running a semantic query to the RAG storage:
 ![img_10.png](res/images/img_10.png)
 
-# General architecture
-![img.png](img.png)
+# Architecture
+## General
+![general_arch.png](res/images/general_arch.png)
+## LLM service [Legacy]
+![llm_legacy.png](res/images/llm_legacy.png)
+## LLM service [RAG]
+![llm_rag.png](res/images/llm_rag.png)
+## OpenAI Agent
+![agent.png](res/images/agent.png)
