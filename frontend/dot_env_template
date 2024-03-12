@@ -1,0 +1,2 @@
+base_llm_service_endpoint=http://localhost:9334
+base_rag_service_endpoint=http://localhost:9333

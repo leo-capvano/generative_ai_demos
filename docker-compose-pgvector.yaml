@@ -4,12 +4,10 @@ services:
     container_name: pgvector
     image: ankane/pgvector
     ports:
-     - 5432:5432
+     - 5433:5432
     environment:
-      - POSTGRES_DB=rag_storage_tenant_test
-      - POSTGRES_USER=tenant_test
-      - POSTGRES_PASSWORD=tenant_test
+      - POSTGRES_DB=postgres_db
+      - POSTGRES_USER=postgres_usr
+      - POSTGRES_PASSWORD=postgres_pwd
       - POSTGRES_HOST_AUTH_METHOD=trust
     command: ["postgres", "-c", "log_statement=all"]
-    volumes:
-     - ./init_local.sql:/docker-entrypoint-initdb.d/init.sql

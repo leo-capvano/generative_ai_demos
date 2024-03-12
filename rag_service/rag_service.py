@@ -1,3 +1,4 @@
+import os
 from datetime import datetime
 
 import psycopg2
@@ -7,17 +8,18 @@ from fastapi import FastAPI
 from langchain_community.embeddings import OllamaEmbeddings
 from langchain_community.vectorstores.pgvector import PGVector
 from langchain_core.documents import Document
+from langchain_openai import OpenAIEmbeddings
 from pydantic import BaseModel
 
 load_dotenv()
 
 app = FastAPI()
 
-DB_NAME = "personal_rag_storage"
+DB_NAME = "postgres_db"
 DB_HOST = "localhost"
-DB_PORT = "5432"
-USER_PASSWORD = "personal_rag_storage"
-DB_USER = "personal_rag_storage"
+DB_PORT = "5433"
+USER_PASSWORD = "postgres_pwd"
+DB_USER = "postgres_usr"
 
 TOP_K = 3
 CONNECTION_STRING = f"postgresql+psycopg2://{DB_USER}:{USER_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}"
@@ -27,7 +29,9 @@ COLLECTION_NAME = "mr_index"
 #                                          azure_endpoint=os.environ["azure_endpoint"],
 #                                          openai_api_key=os.environ["AZURE_OPENAI_API_KEY"])
 
-EMBEDDINGS_MODEL = OllamaEmbeddings(model="mistral")
+# EMBEDDINGS_MODEL = OllamaEmbeddings(model="mistral")
+
+EMBEDDINGS_MODEL = OpenAIEmbeddings(openai_api_key=os.environ["OPENAI_API_KEY"], model="text-embedding-3-large")
 
 retriever = PGVector.from_existing_index(connection_string=CONNECTION_STRING, embedding=EMBEDDINGS_MODEL,
                                          collection_name=COLLECTION_NAME).as_retriever(search_kwargs={"k": TOP_K})

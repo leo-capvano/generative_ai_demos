@@ -1,0 +1,12 @@
+openai_api_version=
+azure_deployment=
+azure_endpoint=
+model_name=
+temperature=0
+base_rag_service_endpoint=http://localhost:9333
+base_llm_service_endpoint=http://localhost:9334
+brave_api_key=
+llm_impl=openai
+#llm_impl=azure_openai
+#llm_impl=ollama_mistral
+OPENAI_API_KEY=
