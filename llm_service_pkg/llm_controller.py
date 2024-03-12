@@ -9,25 +9,16 @@ from langchain import hub
 from langchain.agents import create_openai_tools_agent, AgentExecutor
 from langchain_community.tools.brave_search.tool import BraveSearch
 from langchain_core.tools import tool
-from langchain_openai import AzureChatOpenAI
+from langchain_openai import ChatOpenAI
 from pydantic import BaseModel
+
+from llm_service_pkg.llm_service import llm_service_factory
 
 load_dotenv()
 
 app = FastAPI()
 
-llm = AzureChatOpenAI(openai_api_version=os.environ["openai_api_version"],
-                      azure_deployment=os.environ["azure_deployment"],
-                      azure_endpoint=os.environ["azure_endpoint"],
-                      openai_api_key=os.environ["AZURE_OPENAI_API_KEY"],
-                      temperature=os.environ["temperature"],
-                      model_name=os.environ["model_name"])
-
-
-# llm = OpenAI(temperature=os.environ["temperature"],
-#              openai_api_key="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")
-
-# llm = Ollama(model="mistral")
+llm_service = llm_service_factory(os.environ["llm_impl"])
 
 
 @tool
@@ -56,7 +47,7 @@ class AskQuery(BaseModel):
 @app.post("/legacy-ask")
 def legacy_ask(ask_query: AskQuery):
     print(f"received new request, legacy ask with user query: {ask_query.query}")
-    return llm.invoke(ask_query.query)
+    return llm_service.call_llm(ask_query.query)
 
 
 @app.get("/tools")
@@ -79,14 +70,15 @@ def rag_ask(ask_query: AskQuery):
     {ask_query.query}
     """
 
-    return {"generation_result": llm.invoke(prompt_template), "source_documents": prompt_context}
+    return {"generation_result": llm_service.call_llm(prompt_template), "source_documents": prompt_context}
 
 
 @app.post("/agent-ask")
 def agent_ask(ask_query: AskQuery):
     print(f"received new request, Agent ask with user query: {ask_query.query}")
     prompt_template = hub.pull("hwchase17/openai-tools-agent")
-    agent = create_openai_tools_agent(llm=llm, tools=tools, prompt=prompt_template)
+    llm_chat_openai = ChatOpenAI(openai_api_key=os.environ["OPENAI_API_KEY"])
+    agent = create_openai_tools_agent(llm=llm_chat_openai, tools=tools, prompt=prompt_template)
     agent_executor = AgentExecutor(agent=agent, tools=tools, verbose=True, return_intermediate_steps=True)
     result = agent_executor.invoke({"input": ask_query})
     return {"output": result.get("output"), "intermediate_steps": result.get("intermediate_steps")}
