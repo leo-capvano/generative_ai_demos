@@ -43,28 +43,29 @@ this compose file
 >    10. run an agent demo and see the intermediate steps
 
 ## RAG storage admin panel
-This is the RAG admin panel:
+This is the RAG admin panel:  
 ![img.png](res/images/img.png)
 
-You can read all from your RAG storage:
+You can read all from your RAG storage:  
 ![img_1.png](res/images/img_1.png)
 
-You can insert into RAG storage:
+You can insert into RAG storage:  
 ![img_2.png](res/images/img_2.png)
 
-You can run a semantic query:
+You can run a semantic query:  
 ![img_3.png](res/images/img_3.png)
 
 ## Legacy LLM runner
-Here you run an LLM in legacy mode (without RAG, so he won't be aware of specific domain data)
+Here you run an LLM in legacy mode (without RAG, so he won't be aware of specific domain data)  
 ![img_4.png](res/images/img_4.png)
 
-Works, but if we ask him about me...
+Works, but if we ask him about me...  
 ![img_5.png](res/images/img_5.png)
-meh, general purpose I guess :/
+meh, general purpose I guess :/  
 
 ## RAG LLM runner
-Here you can run LLM in RAG mode. He selects a context before responding. The context is selected using a semantic search against the RAG storage:
+Here you can run LLM in RAG mode. He selects a context before responding. 
+The context is selected using a semantic search against the RAG storage:  
 ![img_6.png](res/images/img_6.png)
 
 ## OpenAI Agent runner
