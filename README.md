@@ -1,5 +1,14 @@
 # GenAI Demos
 
+Unlock the potential of advanced AI-driven knowledge management and exploration
+with GenAI Demos. This repository offers a comprehensive suite of tools and 
+functionalities to empower users in their data handling and interaction endeavors.
+From seamless RAG storage administration to dynamic LLM interactions, GenAI
+Demos provides a platform for efficient data insertion, retrieval, and contextual
+understanding. Explore the capabilities of legacy and RAG LLM runners, and witness
+the power of AI agents executing complex tasks with ease. Get started 
+now and embark on a journey of AI-driven knowledge exploration like never before!
+
 ## Set - Up
 Install requirements
 > pip install -r requirements.txt  
