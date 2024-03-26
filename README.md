@@ -54,9 +54,9 @@ The supported models are:
 The model strategy is programmed by setting a value to the **embeddings_model_impl** environment
 variable of the **rag_service** package.  
 The supported models are:
-- llm_impl=openai_embeddings (**OpenAI Embeddings Model**)
-- llm_impl=azure_openai_embeddings (**AzureOpenAI Embeddings Model**)
-- llm_impl=ollama_mistral (**MistralAI Embeddings Model from Ollama in local**)
+- embeddings_model_impl=openai_embeddings (**OpenAI Embeddings Model**)
+- embeddings_model_impl=azure_openai_embeddings (**AzureOpenAI Embeddings Model**)
+- embeddings_model_impl=ollama_mistral (**MistralAI Embeddings Model from Ollama in local**)
 
 ## RAG storage admin panel
 This is the RAG admin panel:  
