@@ -42,6 +42,22 @@ this compose file
 > 9. OpenAI Agent runner
 >    10. run an agent demo and see the intermediate steps
 
+# Supported models
+The model strategy is programmed by setting a value to the **llm_impl** environment
+variable of the **llm_service** package.  
+The supported models are:
+- llm_impl=openai (**OpenAI**)
+- llm_impl=azure_openai (**AzureOpenAI**)
+- llm_impl=ollama_mistral (**MistralAI from Ollama in local**)
+
+# Supported embeddings models
+The model strategy is programmed by setting a value to the **embeddings_model_impl** environment
+variable of the **rag_service** package.  
+The supported models are:
+- llm_impl=openai_embeddings (**OpenAI Embeddings Model**)
+- llm_impl=azure_openai_embeddings (**AzureOpenAI Embeddings Model**)
+- llm_impl=ollama_mistral (**MistralAI Embeddings Model from Ollama in local**)
+
 ## RAG storage admin panel
 This is the RAG admin panel:  
 ![img.png](res/images/img.png)
