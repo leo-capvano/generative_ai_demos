@@ -9,7 +9,7 @@ from langchain_core.embeddings import Embeddings
 from rag_service.app_config import CONNECTION_STRING, COLLECTION_NAME, TOP_K
 from rag_service.embeddings_model import embeddings_model_factory
 
-embeddings_model = embeddings_model_factory("openai_embeddings")
+embeddings_model = embeddings_model_factory(os.environ["embeddings_model_impl"])
 
 
 class IRetriever(ABC):

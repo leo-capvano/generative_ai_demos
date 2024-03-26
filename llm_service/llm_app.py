@@ -12,7 +12,7 @@ from langchain_core.tools import tool
 from langchain_openai import ChatOpenAI
 from pydantic import BaseModel
 
-from llm_service_pkg.llm import llm_factory
+from llm_service.llm import llm_factory
 
 load_dotenv()
 
