@@ -1,22 +1,18 @@
-import os
 from datetime import datetime
 
-import psycopg2
 import uvicorn
 from dotenv import load_dotenv
 from fastapi import FastAPI
 from langchain_core.documents import Document
 from pydantic import BaseModel
 
+from rag_service.app_config import db_connection
 from rag_service.retriever import retriever_factory
 
 load_dotenv()
 
 app = FastAPI()
 
-db_connection = psycopg2.connect(user=os.environ["DB_USER"], password=os.environ["USER_PASSWORD"],
-                                 host=os.environ["DB_HOST"],
-                                 port=os.environ["DB_PORT"], database=os.environ["DB_NAME"])
 retriever = retriever_factory("pgvector")
 
 

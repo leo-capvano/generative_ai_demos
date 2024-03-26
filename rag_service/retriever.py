@@ -6,18 +6,10 @@ from langchain_community.vectorstores.pgvector import PGVector
 from langchain_core.documents import Document
 from langchain_core.embeddings import Embeddings
 
+from rag_service.app_config import CONNECTION_STRING, COLLECTION_NAME, TOP_K
 from rag_service.embeddings_model import embeddings_model_factory
 
 embeddings_model = embeddings_model_factory("openai_embeddings")
-
-DB_NAME = os.environ["DB_NAME"]
-DB_HOST = os.environ["DB_HOST"]
-DB_PORT = os.environ["DB_PORT"]
-USER_PASSWORD = os.environ["USER_PASSWORD"]
-DB_USER = os.environ["DB_USER"]
-COLLECTION_NAME = os.environ["COLLECTION_NAME"]
-TOP_K = int(os.environ["TOP_K"])
-CONNECTION_STRING = f"postgresql+psycopg2://{DB_USER}:{USER_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}"
 
 
 class IRetriever(ABC):
